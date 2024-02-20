@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Header from "./components/Header";
+import AuthContextProvider from "./context/AuthContextProvider";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang='en' className={pretendard.className}>
       <body className='w-full max-w-screen-xl overflow-auto mx-auto flex flex-col'>
-        <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
-          <Header />
-        </header>
-        <main className='grow'>{children}</main>
+        <AuthContextProvider>
+          <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
+            <Header />
+          </header>
+          <main className='grow'>{children}</main>
+        </AuthContextProvider>
       </body>
     </html>
   );

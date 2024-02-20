@@ -9,9 +9,9 @@ import {
   NewPostFillIcon,
   SearchIcon,
   SearchFillIcon,
-  SignInIcon,
 } from "./ui/icons";
 import Button from "./ui/Button";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const MENU_LIST = [
   {
@@ -32,7 +32,10 @@ const MENU_LIST = [
 ];
 
 export default function Header() {
+  const { data: session } = useSession();
   const pathName = usePathname();
+  console.log(session);
+
   return (
     <header className='flex justify-between items-center px-10 py-3'>
       <Link href='/'>
@@ -45,8 +48,11 @@ export default function Header() {
           </li>
         ))}
       </ul>
-      <Button text={"Sign in"} onClick={() => {}} />
-      {/* <SignInIcon /> */}
+      {session ? (
+        <Button text={"Sign Out"} onClick={() => signOut()} />
+      ) : (
+        <Button text={"Sign In"} onClick={() => signIn()} />
+      )}
     </header>
   );
 }
