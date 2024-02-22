@@ -34,8 +34,6 @@ const MENU_LIST = [
 export default function Header() {
   const { data: session } = useSession();
   const pathName = usePathname();
-  console.log(session);
-
   return (
     <header className='flex justify-between items-center px-10 py-3'>
       <Link href='/'>
