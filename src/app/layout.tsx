@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={pretendard.className}>
-      <body className='w-full max-w-screen-xl overflow-auto mx-auto flex flex-col'>
+      <body className='flex flex-col w-full max-w-screen-xl mx-auto '>
         <AuthContextProvider>
           <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
             <Header />
