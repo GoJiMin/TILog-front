@@ -3,8 +3,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { createClient } from "next-sanity";
-import { getPosts } from "@/app/services/sanity";
 
 type Props = {
   searchParams: {

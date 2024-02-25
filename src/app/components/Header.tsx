@@ -14,7 +14,6 @@ import {
 } from "./ui/icons";
 import Button from "./ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { UserType, createUser } from "../services/sanity";
 
 const MENU_LIST = [
   {
@@ -38,8 +37,6 @@ export default function Header() {
   const { data: session } = useSession();
   const user = session?.user;
   const pathName = usePathname();
-
-  console.log(user);
 
   return (
     <header className='flex justify-between items-center px-10 py-3'>

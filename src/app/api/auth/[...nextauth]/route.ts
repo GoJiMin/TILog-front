@@ -3,6 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
+import { createUser } from "@/app/services/user";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -26,6 +27,21 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user: { id, name, email, image } }) {
+      if (!name) {
+        return false;
+      }
+
+      createUser({
+        id,
+        email: email || "",
+        name: name,
+        userid: email ? email.split("@")[0] : name,
+        image,
+      });
+      
+      return true;
+    },
     async session({ session }) {
       const user = session?.user;
 
