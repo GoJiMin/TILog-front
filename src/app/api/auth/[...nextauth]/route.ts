@@ -24,9 +24,21 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.KAKAO_CLIENT_ID || "",
       clientSecret: process.env.KAKAO_CLIENT_SECRET || "",
     }),
-
-    // ...add more providers here
   ],
+  callbacks: {
+    async session({ session }) {
+      const user = session?.user;
+
+      if (user) {
+        session.user = {
+          ...user,
+          userid: user.email ? user.email.split("@")[0] : user.name,
+        };
+      }
+
+      return session;
+    },
+  },
   pages: {
     signIn: "/auth/signin",
   },
