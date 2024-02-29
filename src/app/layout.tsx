@@ -26,7 +26,7 @@ export default function RootLayout({
           <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
             <Header />
           </header>
-          <main className='grow'>{children}</main>
+          <main className='grow w-full bg-neutral-50'>{children}</main>
         </AuthContextProvider>
       </body>
     </html>
