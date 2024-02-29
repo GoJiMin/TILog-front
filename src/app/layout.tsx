@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Header from "./components/Header";
 import AuthContextProvider from "./context/AuthContextProvider";
+import { SWRConfigContext } from "./context/SWRConfigContext";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -26,7 +27,9 @@ export default function RootLayout({
           <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
             <Header />
           </header>
-          <main className='grow w-full bg-neutral-50'>{children}</main>
+          <main className='grow w-full'>
+            <SWRConfigContext>{children} </SWRConfigContext>
+          </main>
         </AuthContextProvider>
       </body>
     </html>

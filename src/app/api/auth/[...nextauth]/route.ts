@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user: { id, name, email, image } }) {
+    async signIn({ user: { id, name, email } }) {
       if (!name) {
         return false;
       }
@@ -37,9 +37,8 @@ export const authOptions: NextAuthOptions = {
         email: email || "",
         name: name,
         userid: email ? email.split("@")[0] : name,
-        image,
       });
-      
+
       return true;
     },
     async session({ session }) {
@@ -47,8 +46,10 @@ export const authOptions: NextAuthOptions = {
 
       if (user) {
         session.user = {
-          ...user,
+          name: user.name,
+          email: user.email,
           userid: user.email ? user.email.split("@")[0] : user.name,
+          profileimage: user.image,
         };
       }
 

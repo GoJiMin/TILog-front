@@ -13,7 +13,7 @@ export default async function HomePage() {
   }
 
   return (
-    <main className='flex w-full max-w-[850px] p-4 mx-auto'>
+    <main className='flex w-full p-4 px-8 mx-auto'>
       <section className='w-full basis-4/5'>
         <PostList />
       </section>

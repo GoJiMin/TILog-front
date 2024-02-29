@@ -24,3 +24,11 @@ export async function getUsers() {
 
   return users;
 }
+
+export async function getFollowingUsers(id: string) {
+  const users = await client.fetch(
+    `*[_type == "user" && userid == ${id}]{following}`
+  );
+
+  return users;
+}
