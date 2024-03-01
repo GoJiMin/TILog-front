@@ -10,25 +10,26 @@ export type UserType = {
 
 export async function createUser({ id, name, email, image, userid }: UserType) {
   return client.createIfNotExists({
-    _type: "user",
     _id: id,
+    _type: "user",
     email,
     name,
-    profileimage: image,
+    profileimage: image ?? "",
     userid,
+    following: [],
+    followers: [],
+    bookmarks: [],
   });
 }
 
-export async function getUsers() {
-  const users = await client.fetch('*[_type == "user"]');
-
-  return users;
-}
-
-export async function getFollowingUsers(id: string) {
-  const users = await client.fetch(
-    `*[_type == "user" && userid == ${id}]{following}`
+export async function getUserById(id: string) {
+  return client.fetch(
+    `*[_type == "user" && _id == "${id}"][0]{
+      ...,
+      "id":_id,
+      following[]->{ userid, profileimage },
+      followers[]->{ userid, profileimage },
+      "bookmarks": bookmarks[]->_id
+    }`
   );
-
-  return users;
 }

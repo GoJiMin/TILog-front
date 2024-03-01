@@ -41,11 +41,12 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async session({ session }) {
+    async session({ session, token }) {
       const user = session?.user;
 
       if (user) {
         session.user = {
+          id: token.sub,
           name: user.name,
           email: user.email,
           userid: user.email ? user.email.split("@")[0] : user.name,
