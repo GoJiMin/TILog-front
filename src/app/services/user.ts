@@ -27,8 +27,8 @@ export async function getUserById(id: string) {
     `*[_type == "user" && _id == "${id}"][0]{
       ...,
       "id":_id,
-      following[]->{ userid, profileimage },
-      followers[]->{ userid, profileimage },
+      following[]->{ userid, name, profileimage },
+      followers[]->{ userid, name, profileimage },
       "bookmarks": bookmarks[]->_id
     }`
   );

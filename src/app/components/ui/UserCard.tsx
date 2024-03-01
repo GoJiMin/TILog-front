@@ -1,17 +1,17 @@
-import { User } from "@/app/model/user";
+import { SimpleUser, User } from "@/app/model/user";
 import Avatar from "./Avatar";
 
 export default function UserCard({
-  user: { name, userid, email, profileimage },
+  user: { name, userid, profileimage },
 }: {
-  user: User;
+  user: SimpleUser;
 }) {
   return (
     <article className='flex items-center gap-[10px]'>
-      <Avatar image={""} size={"small"} />
-      <div>
+      <Avatar image={profileimage} size={"small"} />
+      <div className='-translate-y-0.5'>
         <p className='font-semibold'>{userid}</p>
-        <p className='text-sm text-neutral-500 leading-4'>{name}</p>
+        <p className='text-sm text-neutral-500 leading-3'>{name}</p>
       </div>
     </article>
   );

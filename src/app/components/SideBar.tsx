@@ -9,7 +9,7 @@ export default function SideBar({
   user: { userid, name, profileimage },
 }: Props) {
   return (
-    <section>
+    <section className='px-3'>
       <article className='flex items-center gap-[10px]'>
         <Avatar image={profileimage} size={"small"} />
         <div>
