@@ -12,11 +12,10 @@ export default function FollowingList() {
     isLoading: loading,
     error,
   } = useSWR<DetailUser>("/api/profile");
-  const users =
-    data?.following && [...data?.following, ...data?.following].slice(0, 5);
+  const users = data?.following.slice(0, 5);
 
   return (
-    <section className='mt-6 shadow-lg p-3 rounded-md'>
+    <section className='mt-6 shadow-lg p-3 rounded-lg'>
       <div className='flex justify-between font-semibold'>
         <p className='text-neutral-500'>회원님의 팔로잉</p>
         {users && users.length > 0 && <p className='text-sm'>모두 보기</p>}
