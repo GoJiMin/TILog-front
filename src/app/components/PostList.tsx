@@ -1,11 +1,24 @@
 "use client";
 
 import useSWR from "swr";
+import { SimplePost } from "../model/post";
 
 export default function PostList() {
-  const { data } = useSWR("/api/posts");
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useSWR<SimplePost[]>("/api/posts");
 
-  console.log(data);
+  console.log(posts);
 
-  return <h2>Post List!</h2>;
+  return (
+    <section className='flex justify-center'>
+      <ul className='flex flex-col gap-[15px]'>
+        {posts &&
+          posts.length > 0 &&
+          posts.map((post, index) => <li key={index}>{post.description}</li>)}
+      </ul>
+    </section>
+  );
 }

@@ -22,12 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={pretendard.className}>
-      <body className='flex flex-col w-full max-w-screen-xl mx-auto '>
+      <body className='flex flex-col w-full '>
         <AuthContextProvider>
-          <header className='sticky top-0 z-10 bg-white border-b border-neutral-300'>
+          <header className='sticky top-0 z-10 bg-white/60 backdrop-blur-xl'>
             <Header />
           </header>
-          <main className='grow w-full'>
+          <main className='grow w-full max-w-screen-xl mx-auto'>
             <SWRConfigContext>{children} </SWRConfigContext>
           </main>
         </AuthContextProvider>

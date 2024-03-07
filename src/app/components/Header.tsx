@@ -39,7 +39,7 @@ export default function Header() {
   const pathName = usePathname();
 
   return (
-    <header className='flex justify-between items-center px-10 py-3'>
+    <header className='w-full max-w-screen-xl mx-auto flex justify-between items-center py-5'>
       <Link href='/'>
         <h1 className='text-4xl font-semibold'>TILog</h1>
       </Link>
