@@ -4,15 +4,10 @@ import { client, urlFor } from "./sanity";
 const projection = `
     "id": _id,
     "userid": author->userid,
-    "name": author->name,
     "profileimage": author->profileimage,
     "image": photo,
     "description": description,
-    "likes": likes[]->{
-      userid,
-      name,
-      profileimage
-    },
+    "likes": count(likes),
     "comments": count(comments),
     "createdAt": _createdAt,
 `;
