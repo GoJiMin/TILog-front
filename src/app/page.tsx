@@ -14,13 +14,9 @@ export default async function HomePage() {
   }
 
   return (
-    <main className='flex w-full p-4 px-8 mx-auto'>
-      <section className='w-full basis-4/5'>
+    <main className='flex justify-center w-full p-4'>
+      <section>
         <PostList />
-      </section>
-      <section className='basis-1/5'>
-        <SideBar user={user} />
-        <FollowingList />
       </section>
     </main>
   );

@@ -14,7 +14,7 @@ export default function PostList() {
 
   return (
     <section className='flex justify-center'>
-      {loading && <MoonLoader color='#000000' size={35} />}
+      {loading && <MoonLoader color='#000000' size={40} />}
       <ul className='flex flex-col gap-[15px]'>
         {posts &&
           posts.map((post, index) => (
