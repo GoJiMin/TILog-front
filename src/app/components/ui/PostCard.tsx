@@ -39,7 +39,7 @@ export default function PostCard({ post }: Props) {
         />
         <article className='flex justify-between items-center mt-3'>
           <section className='flex gap-[10px] items-center'>
-            <HeartIcon />
+            <HeartIcon size='small' />
             <CommentIcon />
           </section>
           <BookMarkIcon />

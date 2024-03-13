@@ -1,4 +1,5 @@
-import { RiUser3Line } from "react-icons/ri";
+import { BiUser } from "react-icons/bi";
+
 export default function UserIcon() {
-  return <RiUser3Line className='w-7 h-7' />;
+  return <BiUser className='w-8 h-8' />;
 }

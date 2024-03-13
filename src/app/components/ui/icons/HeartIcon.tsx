@@ -1,5 +1,11 @@
-import { HiOutlineHeart } from "react-icons/hi2";
+import { AiOutlineHeart } from "react-icons/ai";
 
-export default function HeartIcon() {
-  return <HiOutlineHeart className='w-7 h-7' />;
+type Props = {
+  size?: "small" | "normal";
+};
+
+export default function HeartIcon({ size = "normal" }: Props) {
+  return (
+    <AiOutlineHeart className={size === "small" ? "w-7 h-7" : "w-8 h-8"} />
+  );
 }

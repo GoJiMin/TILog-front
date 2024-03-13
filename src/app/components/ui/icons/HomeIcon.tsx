@@ -1,5 +1,5 @@
-import { AiOutlineHome } from "react-icons/ai";
+import { GoHome } from "react-icons/go";
 
 export default function HomeIcon() {
-  return <AiOutlineHome className='w-7 h-7' />;
+  return <GoHome className='w-8 h-8' />;
 }

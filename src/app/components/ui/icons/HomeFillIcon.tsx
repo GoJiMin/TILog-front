@@ -1,5 +1,5 @@
-import { AiFillHome } from "react-icons/ai";
+import { GoHomeFill } from "react-icons/go";
 
 export default function HomeFillIcon() {
-  return <AiFillHome className='w-7 h-7' />;
+  return <GoHomeFill className='w-8 h-8' />;
 }

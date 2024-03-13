@@ -7,5 +7,6 @@ export { default as NewPostFillIcon } from "./NewPostFillIcon";
 export { default as UserIcon } from "./UserIcon";
 export { default as UserFillIcon } from "./UserFillIcon";
 export { default as HeartIcon } from "./HeartIcon";
+export { default as HeartFillIcon } from "./HeartFillIcon";
 export { default as CommentIcon } from "./CommentIcon";
 export { default as BookMarkIcon } from "./BookMarkIcon";

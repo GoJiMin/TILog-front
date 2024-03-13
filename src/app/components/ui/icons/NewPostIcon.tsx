@@ -1,5 +1,5 @@
-import { BsPlusSquare } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
 
 export default function NewPostIcon() {
-  return <BsPlusSquare className='w-7 h-7' />;
+  return <FiEdit className='w-[1.9rem] h-[1.9rem]' />;
 }

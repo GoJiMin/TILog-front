@@ -1,5 +1,5 @@
-import { RiUserSearchFill } from "react-icons/ri";
+import { RiSearchFill } from "react-icons/ri";
 
 export default function SearchFillIcon() {
-  return <RiUserSearchFill className='w-7 h-7' />;
+  return <RiSearchFill className='w-8 h-8' />;
 }
