@@ -13,6 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      gridTemplateColumns: {
+        'header': "1fr max-content 1fr",
+      },
+      colors: {
+        'header-background': 'rgba(255, 255, 255, 0.85)',
+        'item-hover-background': 'rgba(255, 255, 255, 0.05)' 
+      }
     },
   },
   plugins: [],

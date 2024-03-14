@@ -1,11 +1,10 @@
 import { User } from "../model/user";
+import Icon from "./ui/Icon";
 import {
   HomeIcon,
   HomeFillIcon,
   NewPostIcon,
-  NewPostFillIcon,
   SearchIcon,
-  SearchFillIcon,
   UserIcon,
   UserFillIcon,
   HeartIcon,
@@ -22,12 +21,22 @@ const MENU_LIST = [
   {
     href: "/search",
     icon: <SearchIcon />,
-    selectedIcon: <SearchFillIcon />,
+    selectedIcon: <SearchIcon />,
   },
   {
     href: "/new",
     icon: <NewPostIcon />,
-    selectedIcon: <NewPostFillIcon />,
+    selectedIcon: <NewPostIcon />,
+  },
+  {
+    href: "likes",
+    icon: <HeartIcon />,
+    selectedIcon: <HeartFillIcon />,
+  },
+  {
+    href: "/mypage",
+    icon: <UserIcon />,
+    selectedIcon: <UserFillIcon />,
   },
 ];
 
@@ -37,15 +46,22 @@ type Props = {
 };
 
 export default function NavList({ user, pathName }: Props) {
-  return (
-    <ul className='flex items-center gap-[85px]'>
-      {MENU_LIST.map(({ href, icon, selectedIcon }) => (
-        <li key={href}>
-          <Link href={href}>{pathName === href ? selectedIcon : icon}</Link>
-        </li>
-      ))}
-      {user && (pathName === "/likes" ? <HeartFillIcon /> : <HeartIcon />)}
-      {user && (pathName === "/mypage" ? <UserFillIcon /> : <UserIcon />)}
-    </ul>
-  );
+  if (user)
+    return (
+      <ul className='grid grid-cols-5 w-screen max-w-[620px] justify-items-center'>
+        {MENU_LIST.map(({ href, icon, selectedIcon }) => (
+          <li className='flex items-center relative' key={href}>
+            <Link href={href}>
+              <Icon
+                icon={pathName === href ? selectedIcon : icon}
+                isSelected={pathName === href}
+                type={"header"}
+              />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+
+  return <section></section>;
 }
