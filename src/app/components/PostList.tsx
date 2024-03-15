@@ -14,12 +14,16 @@ export default function PostList() {
 
   return (
     <section className='flex justify-center'>
-      {loading && <MoonLoader color='#000000' size={40} />}
+      {loading && (
+        <div className='flex h-screen items-center -translate-y-32'>
+          <MoonLoader color='#000000' size={40} />
+        </div>
+      )}
       <ul className='flex flex-col gap-[15px]'>
         {posts &&
           posts.map((post, index) => (
             <li key={index}>
-              <PostCard post={post} />
+              <PostCard post={post} priority={index < 2} />
             </li>
           ))}
       </ul>

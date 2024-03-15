@@ -1,14 +1,20 @@
+"use client";
+
 import { SimplePost } from "@/app/model/post";
 import Image from "next/image";
 import Avatar from "./Avatar";
 import { BookMarkIcon, CommentIcon, HeartIcon } from "./icons";
 import { parseDate } from "@/app/utils/date";
+import { useState } from "react";
+import Modal from "./Modal";
+import PostModal from "./PostModal";
 
 type Props = {
   post: SimplePost;
+  priority?: boolean;
 };
 
-export default function PostCard({ post }: Props) {
+export default function PostCard({ post, priority = false }: Props) {
   const {
     userid,
     profileimage,
@@ -18,6 +24,16 @@ export default function PostCard({ post }: Props) {
     comments,
     createdAt,
   } = post;
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   return (
     <article className='flex border-b border-neutral-300 pb-4'>
@@ -36,6 +52,8 @@ export default function PostCard({ post }: Props) {
           alt={`photo by ${userid}`}
           width={600}
           height={500}
+          priority={priority}
+          onClick={handleOpen}
         />
         <article className='flex justify-between items-center mt-3'>
           <section className='flex gap-[10px] items-center'>
@@ -52,6 +70,11 @@ export default function PostCard({ post }: Props) {
             <p className='text-neutral-500'>답글 {comments}개</p>
           )}
         </article>
+        {openModal && (
+          <Modal onClose={handleClose}>
+            <PostModal />
+          </Modal>
+        )}
       </section>
     </article>
   );

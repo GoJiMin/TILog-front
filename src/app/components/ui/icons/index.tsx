@@ -10,3 +10,4 @@ export { default as CommentIcon } from "./CommentIcon";
 export { default as BookMarkIcon } from "./BookMarkIcon";
 export { default as SignInIcon } from "./SignInIcon";
 export { default as SignOutIcon } from "./SignOutIcon";
+export { default as CloseIcon } from "./CloseIcon";
