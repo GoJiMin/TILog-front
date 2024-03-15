@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           email: user.email,
           userid: user.email ? user.email.split("@")[0] : user.name,
-          profileimage: user.image,
+          profileimage: "",
         };
       }
 

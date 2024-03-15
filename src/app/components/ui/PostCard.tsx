@@ -7,7 +7,7 @@ import { BookMarkIcon, CommentIcon, HeartIcon } from "./icons";
 import { parseDate } from "@/app/utils/date";
 import { useState } from "react";
 import Modal from "./Modal";
-import PostModal from "./PostModal";
+import PostDetail from "../PostDetail";
 
 type Props = {
   post: SimplePost;
@@ -72,7 +72,7 @@ export default function PostCard({ post, priority = false }: Props) {
         </article>
         {openModal && (
           <Modal onClose={handleClose}>
-            <PostModal />
+            <PostDetail post={post} />
           </Modal>
         )}
       </section>

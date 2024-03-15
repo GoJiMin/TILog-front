@@ -12,7 +12,7 @@ export default function FollowingList() {
     isLoading: loading,
     error,
   } = useSWR<DetailUser>("/api/profile");
-  const users = data?.following.slice(0, 5);
+  const users = data?.following?.slice(0, 5) || [];
 
   return (
     <section className='mt-6 shadow-lg p-3 rounded-lg'>
@@ -39,10 +39,10 @@ export default function FollowingList() {
       {users && users.length > 0 && (
         <article className='mt-4'>
           <ul className='flex flex-col gap-[20px]'>
-            {users.map(({ userid, name, profileimage }) => (
-              <li key={userid}>
-                <Link href={`/user/${userid}`}>
-                  <UserCard user={{ userid, name, profileimage }} />
+            {users.map((user) => (
+              <li key={user.userid}>
+                <Link href={`/user/${user.userid}`}>
+                  <UserCard user={user} />
                 </Link>
               </li>
             ))}

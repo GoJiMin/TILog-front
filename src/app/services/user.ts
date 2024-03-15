@@ -4,17 +4,16 @@ export type UserType = {
   id: string;
   email?: string | null;
   name: string;
-  image?: string | null;
   userid: string;
 };
 
-export async function createUser({ id, name, email, image, userid }: UserType) {
+export async function createUser({ id, name, email, userid }: UserType) {
   return client.createIfNotExists({
     _id: id,
     _type: "user",
     email,
     name,
-    profileimage: image ?? "",
+    profileimage: "",
     userid,
     following: [],
     followers: [],
