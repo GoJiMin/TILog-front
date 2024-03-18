@@ -10,17 +10,17 @@ type Props = {
 type SizeType = Record<string, string>;
 
 const containerSize: SizeType = {
-  small: "w-11 h-11 ",
+  small: "w-10 h-10 ",
   normal: "w-[68px] h-[68px] ",
 };
 
 const imageSize: SizeType = {
-  small: "w-11 h-11",
+  small: "w-10 h-10",
   normal: "w-[68px] h-[68px]",
 };
 
 const iconSize: SizeType = {
-  small: "w-12 h-12",
+  small: "w-11 h-11",
   normal: "w-[50px] h-[50px]",
 };
 

@@ -21,7 +21,9 @@ export default function Modal({ children, onClose }: Props) {
           <button className='fixed top-5 right-10 text-white' onClick={onClose}>
             <CloseIcon />
           </button>
-          <article className='z-30 bg-white'>{children}</article>
+          <article className='z-30 w-3/5 h-4/6 max-w-6xl bg-white rounded-md overflow-hidden'>
+            {children}
+          </article>
         </section>,
         element
       )}

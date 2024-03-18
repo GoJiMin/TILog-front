@@ -3,11 +3,12 @@
 import { SimplePost } from "@/app/model/post";
 import Image from "next/image";
 import Avatar from "./Avatar";
-import { BookMarkIcon, CommentIcon, HeartIcon } from "./icons";
+
 import { parseDate } from "@/app/utils/date";
 import { useState } from "react";
 import Modal from "./Modal";
 import PostDetail from "../PostDetail";
+import ActionBar from "../ActionBar";
 
 type Props = {
   post: SimplePost;
@@ -55,21 +56,7 @@ export default function PostCard({ post, priority = false }: Props) {
           priority={priority}
           onClick={handleOpen}
         />
-        <article className='flex justify-between items-center mt-3'>
-          <section className='flex gap-[10px] items-center'>
-            <HeartIcon size='small' />
-            <CommentIcon />
-          </section>
-          <BookMarkIcon />
-        </article>
-        <article className='mt-2 flex gap-[15px]'>
-          {likes && likes > 0 && (
-            <p className='text-neutral-500'>좋아요 {likes}개</p>
-          )}
-          {comments && comments > 0 && (
-            <p className='text-neutral-500'>답글 {comments}개</p>
-          )}
-        </article>
+        <ActionBar likes={likes} comments={comments} />
         {openModal && (
           <Modal onClose={handleClose}>
             <PostDetail post={post} />

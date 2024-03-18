@@ -4,6 +4,7 @@ import { client, urlFor } from "./sanity";
 const SimpleProjection = `
     "id": _id,
     "userid": author->userid,
+    "name": author->name,
     "profileimage": author->profileimage,
     "image": photo,
     "description": description,

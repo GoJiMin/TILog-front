@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={pretendard.className}>
-      <body className='flex flex-col w-full '>
+      <body className='flex flex-col w-full'>
         <AuthContextProvider>
           <header className='sticky top-0 z-10 bg-header-background backdrop-blur-xl'>
             <Header />
