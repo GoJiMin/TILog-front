@@ -2,11 +2,13 @@ import { SimpleUser } from "./user";
 
 export type Comments = SimpleUser & {
   comment: string;
+  createdAt: string;
 };
 
 export type Post = {
   id: string;
   userid: string;
+  name: string;
   profileimage: string;
   image: string;
   description: string;
