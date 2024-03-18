@@ -2,6 +2,7 @@ import { SimpleUser } from "./user";
 
 export type Comments = SimpleUser & {
   comment: string;
+  createdAt: string;
 };
 
 export type Post = {

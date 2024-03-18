@@ -6,6 +6,7 @@ import { parseDate } from "../utils/date";
 import Avatar from "./ui/Avatar";
 import ActionBar from "./ActionBar";
 import CommentForm from "./CommentForm";
+import PostUserData from "./PostUserData";
 
 type Props = {
   post: SimplePost;
@@ -52,20 +53,26 @@ export default function PostDetail({ post }: Props) {
         </section>
         <ul className='h-full overflow-y-auto'>
           {comments &&
-            comments.map((comment, index) => (
-              <li className='flex w-full mb-[10px]' key={index}>
-                <Avatar image={comment.profileimage} size={"small"} />
-                <section className='px-1 ml-2.5 -translate-y-1 w-full'>
-                  <article className=' flex justify-between itmes-center'>
-                    <p className='font-bold'>{comment.author.userid}</p>
-                    <time className='text-neutral-500 text-sm'>
-                      {parseDate(createdAt)}
-                    </time>
-                  </article>
-                  <p className='mb-2'>{comment.comment}</p>
-                </section>
-              </li>
-            ))}
+            comments.map(
+              (
+                {
+                  userid: commentUserId,
+                  profileimage: commentUserImage,
+                  comment,
+                  createdAt: commentCreatedAt,
+                },
+                index
+              ) => (
+                <li className='flex w-full mb-[10px] gap-[10px]' key={index}>
+                  <Avatar image={commentUserImage} size={"small"} />
+                  <PostUserData
+                    userid={commentUserId}
+                    createdAt={commentCreatedAt}
+                    description={comment}
+                  />
+                </li>
+              )
+            )}
         </ul>
         <CommentForm />
       </article>

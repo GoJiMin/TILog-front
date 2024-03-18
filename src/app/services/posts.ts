@@ -27,12 +27,11 @@ const projection = `
     },
     comments[]{
       comment,
-      author->{
-        "id": _id,
-        userid,
-        name,
-        profileimage
-      }
+      "id": author->_id,
+      "userid": author->userid,
+      "name": author->name,
+      "profileimage": author->profileimage,
+      "createdAt": _createdAt,
     },
    "createdAt": _createdAt,
 `;
