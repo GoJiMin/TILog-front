@@ -1,3 +1,9 @@
+import SearchUser from "../components/SearchUser";
+
 export default function SearchPage() {
-  return <h2>Search Page!</h2>;
+  return (
+    <section>
+      <SearchUser />
+    </section>
+  );
 }

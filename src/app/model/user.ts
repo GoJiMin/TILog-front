@@ -6,10 +6,13 @@ export type User = {
   profileimage?: string;
 };
 
-export type SimpleUser = Pick<User, "userid" | "name" | "profileimage" | "id">;
+export type SimpleUser = User & {
+  following: number;
+  followers: number;
+};
 
 export type DetailUser = User & {
-  following: SimpleUser[];
-  followers: SimpleUser[];
+  following: User[];
+  followers: User[];
   bookmarks: string[];
 };

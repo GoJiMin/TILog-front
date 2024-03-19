@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang='en' className={pretendard.className}>
       <body className='flex flex-col w-full'>
         <AuthContextProvider>
-          <header className='sticky top-0 z-10 bg-header-background backdrop-blur-xl'>
+          <header className='sticky top-0 z-10 px-5 bg-header-background backdrop-blur-xl'>
             <Header />
           </header>
           <main className='grow w-full max-w-screen-xl mx-auto'>

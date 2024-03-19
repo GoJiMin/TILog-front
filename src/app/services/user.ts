@@ -32,3 +32,37 @@ export async function getUserById(id: string) {
     }`
   );
 }
+
+export async function getAllUser() {
+  return client.fetch(
+    `*[_type == "user"]{
+       "id": _id,
+       userid,
+       name,
+       email,
+       profileimage,
+       "following": count(following),
+       "followers": count(followers),
+       "bookmarks": bookmarks[]->_id
+    }`
+  );
+}
+
+export async function searchUsers(keyword?: string) {
+  const query = keyword
+    ? `&& (name match "*${keyword}*") || (userid match "*${keyword}*")`
+    : "";
+  return client.fetch(
+    `
+    *[_type == "user" ${query}]{
+      "id": _id,
+      userid,
+      name,
+      email,
+      profileimage,
+      "following": count(following),
+      "followers": count(followers)
+   }
+    `
+  );
+}
