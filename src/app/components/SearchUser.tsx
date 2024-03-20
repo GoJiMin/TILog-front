@@ -6,16 +6,31 @@ import { SearchIcon } from "./ui/icons";
 import UserCard from "./ui/UserCard";
 import { SimpleUser } from "../model/user";
 import MoonSpinner from "./ui/MoonSpinner";
+import { useDebounce } from "../utils/hooks/useDebounce";
 
 export default function SearchUser() {
   const [keyword, setKeyword] = useState("");
+  const [warning, setWarning] = useState(false);
+  const debouncedKeyword = useDebounce(keyword, 800);
   const {
     data: users,
     isLoading: loading,
     error,
-  } = useSWR<SimpleUser[]>(`/api/search/${keyword}`);
+  } = useSWR<SimpleUser[]>(`/api/search/${debouncedKeyword}`);
+
+  const handleWarning = () => {
+    setWarning(true);
+    setTimeout(() => {
+      setWarning(false);
+    }, 2000);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+    if (regex.test(e.target.value)) {
+      handleWarning();
+      return;
+    }
     setKeyword(e.target.value);
   };
 
@@ -39,9 +54,13 @@ export default function SearchUser() {
             onChange={handleChange}
             autoFocus
             autoComplete='off'
-            className='border-none outline-none bg-transparent text-lg ml-2'
+            className='border-none w-full outline-none bg-transparent text-lg ml-2'
             type='text'
-            placeholder='사용자를 검색해보세요!'
+            placeholder={`${
+              warning
+                ? "검색어는 특수문자로 시작할 수 없어요."
+                : "사용자를 검색해보세요!"
+            }`}
           />
         </label>
       </form>

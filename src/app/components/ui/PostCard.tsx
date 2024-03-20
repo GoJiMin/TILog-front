@@ -8,6 +8,7 @@ import Modal from "./Modal";
 import PostDetail from "../PostDetail";
 import ActionBar from "../ActionBar";
 import PostUserData from "../PostUserData";
+import PostModal from "./PostModal";
 
 type Props = {
   post: SimplePost;
@@ -56,7 +57,9 @@ export default function PostCard({ post, priority = false }: Props) {
         <ActionBar likes={likes} comments={comments} />
         {openModal && (
           <Modal onClose={handleClose}>
-            <PostDetail post={post} />
+            <PostModal>
+              <PostDetail post={post} />
+            </PostModal>
           </Modal>
         )}
       </section>
