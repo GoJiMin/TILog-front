@@ -3,7 +3,7 @@
 import useSWR from "swr";
 import { SimplePost } from "../model/post";
 import PostCard from "./ui/PostCard";
-import { MoonLoader } from "react-spinners";
+import MoonSpinner from "./ui/MoonSpinner";
 
 export default function PostList() {
   const {
@@ -14,11 +14,7 @@ export default function PostList() {
 
   return (
     <section className='flex justify-center'>
-      {loading && (
-        <div className='flex h-screen items-center -translate-y-32'>
-          <MoonLoader color='#000000' size={40} />
-        </div>
-      )}
+      {loading && <MoonSpinner />}
       <ul className='flex flex-col gap-[15px]'>
         {posts &&
           posts.map((post, index) => (
