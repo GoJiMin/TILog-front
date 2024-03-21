@@ -1,4 +1,4 @@
-export type User = {
+export type AuthUser = {
   id: string;
   name: string;
   userid: string;
@@ -6,13 +6,18 @@ export type User = {
   profileimage?: string;
 };
 
-export type SimpleUser = User & {
+export type SearchUser = AuthUser & {
   following: number;
   followers: number;
 };
 
-export type DetailUser = User & {
-  following: User[];
-  followers: User[];
+export type HomeUser = AuthUser & {
+  following: AuthUser[];
+  followers: AuthUser[];
   bookmarks: string[];
+};
+
+export type ProfileUser = SearchUser & {
+  bookmarks: string[];
+  posts: number;
 };

@@ -1,17 +1,13 @@
 "use client";
 
 import useSWR from "swr";
-import { DetailUser } from "../model/user";
+import { HomeUser } from "../model/user";
 import { ScaleLoader } from "react-spinners";
 import Link from "next/link";
 import UserCard from "./ui/UserCard";
 
 export default function FollowingList() {
-  const {
-    data,
-    isLoading: loading,
-    error,
-  } = useSWR<DetailUser>("/api/profile");
+  const { data, isLoading: loading, error } = useSWR<HomeUser>("/api/profile");
   const users = data?.following?.slice(0, 5) || [];
 
   return (
@@ -41,9 +37,7 @@ export default function FollowingList() {
           <ul className='flex flex-col gap-[20px]'>
             {users.map((user) => (
               <li key={user.userid}>
-                <Link href={`/user/${user.userid}`}>
-                  <UserCard user={user} />
-                </Link>
+                <UserCard user={user} />
               </li>
             ))}
           </ul>

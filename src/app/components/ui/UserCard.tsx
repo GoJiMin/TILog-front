@@ -1,18 +1,19 @@
-import { User } from "@/app/model/user";
+import { AuthUser } from "@/app/model/user";
 import Avatar from "./Avatar";
+import Link from "next/link";
 
 export default function UserCard({
   user: { name, userid, profileimage },
   connections,
 }: {
-  user: User;
+  user: AuthUser;
   connections?: {
     following: number;
     followers: number;
   };
 }) {
   return (
-    <article className='flex itmes-center gap-[12px]'>
+    <Link href={`/user/${userid}`} className='flex itmes-center gap-[12px]'>
       <Avatar image={profileimage} size={"small"} />
       <section className=''>
         <div className='-translate-y-0.5'>
@@ -25,6 +26,6 @@ export default function UserCard({
           </p>
         )}
       </section>
-    </article>
+    </Link>
   );
 }

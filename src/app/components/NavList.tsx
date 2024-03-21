@@ -1,4 +1,4 @@
-import { User } from "../model/user";
+import { AuthUser } from "../model/user";
 import Icon from "./ui/Icon";
 import {
   HomeIcon,
@@ -41,7 +41,7 @@ const MENU_LIST = [
 ];
 
 type Props = {
-  user: User;
+  user: AuthUser;
   pathName: string;
 };
 

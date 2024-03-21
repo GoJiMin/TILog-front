@@ -33,6 +33,22 @@ export async function getUserById(id: string) {
   );
 }
 
+export async function getUserForProfile(userid: string) {
+  return client.fetch(
+    `*[_type == "user" && userid == "${userid}"][0]{
+      "id":_id,
+      userid,
+      name,
+      email,
+      profileimage,
+      "following": count(following),
+      "followers": count(followers),
+      "posts": count(*[_type == "post" && author._ref == ^._id]),
+      "bookmarks": bookmarks[]->_id,
+    }`
+  );
+}
+
 export async function getAllUser() {
   return client.fetch(
     `*[_type == "user"]{

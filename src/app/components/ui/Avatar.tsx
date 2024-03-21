@@ -11,17 +11,17 @@ type SizeType = Record<string, string>;
 
 const containerSize: SizeType = {
   small: "w-10 h-10 ",
-  normal: "w-[68px] h-[68px] ",
+  normal: "w-[98px] h-[98px] ",
 };
 
 const imageSize: SizeType = {
   small: "w-10 h-10",
-  normal: "w-[68px] h-[68px]",
+  normal: "w-[98px] h-[98px]",
 };
 
 const iconSize: SizeType = {
   small: "w-11 h-11",
-  normal: "w-[50px] h-[50px]",
+  normal: "w-[94px] h-[94px]",
 };
 
 export default function Avatar({ image, size = "normal" }: Props) {

@@ -1,6 +1,6 @@
-import { User } from "./user";
+import { AuthUser } from "./user";
 
-export type Comments = User & {
+export type Comments = AuthUser & {
   comment: string;
   createdAt: string;
 };
@@ -12,7 +12,7 @@ export type Post = {
   profileimage: string;
   image: string;
   description: string;
-  likes: User[];
+  likes: AuthUser[];
   comments: Comments[];
   createdAt: string;
 };

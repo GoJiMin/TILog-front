@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import useSWR from "swr";
 import { SearchIcon } from "./ui/icons";
 import UserCard from "./ui/UserCard";
-import { SimpleUser } from "../model/user";
+import { SearchUser } from "../model/user";
 import MoonSpinner from "./ui/MoonSpinner";
 import { useDebounce } from "../utils/hooks/useDebounce";
 
@@ -16,7 +16,7 @@ export default function SearchUser() {
     data: users,
     isLoading: loading,
     error,
-  } = useSWR<SimpleUser[]>(`/api/search/${debouncedKeyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
 
   const handleWarning = () => {
     setWarning(true);
