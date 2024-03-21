@@ -7,11 +7,11 @@ type Props = {
   size?: string;
 };
 
-type SizeType = Record<string, string>;
+export type SizeType = Record<string, string>;
 
 const containerSize: SizeType = {
   small: "w-10 h-10 ",
-  normal: "w-[98px] h-[98px] ",
+  normal: "w-[97px] h-[97px] ",
 };
 
 const imageSize: SizeType = {
@@ -21,7 +21,7 @@ const imageSize: SizeType = {
 
 const iconSize: SizeType = {
   small: "w-11 h-11",
-  normal: "w-[94px] h-[94px]",
+  normal: "w-[97px] h-[97px]",
 };
 
 export default function Avatar({ image, size = "normal" }: Props) {

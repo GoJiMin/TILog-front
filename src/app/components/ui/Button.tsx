@@ -1,12 +1,32 @@
+import { SizeType } from "./Avatar";
+import { ColorType } from "./SignInButton";
+
 type Props = {
   text: string;
   onClick: () => void;
+  type: string;
+  size?: string;
 };
 
-export default function Button({ text, onClick }: Props) {
+const buttonColor: ColorType = {
+  follow: "border border-black",
+  following: "bg-black text-white",
+};
+
+const buttonSize: SizeType = {
+  small: "text-base py-1",
+  normal: "text-xl py-1.5",
+};
+
+export default function Button({
+  text,
+  onClick,
+  type,
+  size = "normal",
+}: Props) {
   return (
     <button
-      className='text-lg px-5 py-1 border bg-black rounded-md text-white hover:opacity-85'
+      className={`${buttonColor[type]} ${buttonSize[size]} min-w-[90px] rounded-md font-semibold`}
       onClick={onClick}
     >
       {text}

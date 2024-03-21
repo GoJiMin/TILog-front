@@ -64,9 +64,12 @@ export async function getAllUser() {
   );
 }
 
-export async function searchUsers(keyword?: string) {
+export async function searchUsers(keyword?: string, loggedInUserId?: string) {
   const query = keyword
     ? `&& (name match "*${keyword}*") || (userid match "*${keyword}*")`
+    : "";
+  const projection = loggedInUserId
+    ? `"isFollowing": _id in *[_type == "user" && _id == "${loggedInUserId}"].following[]._ref`
     : "";
   return client.fetch(
     `
@@ -77,7 +80,8 @@ export async function searchUsers(keyword?: string) {
       email,
       profileimage,
       "following": count(following),
-      "followers": count(followers)
+      "followers": count(followers),
+      ${projection}
    }
     `
   );

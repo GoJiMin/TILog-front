@@ -1,12 +1,13 @@
 import { ProfileUser } from "../model/user";
+import ProfileFollowButton from "./ProfileFollowButton";
 import Avatar from "./ui/Avatar";
 
 type Props = {
   user: ProfileUser;
 };
 
-export default function UserProfile({
-  user: {
+export default function UserProfile({ user }: Props) {
+  const {
     userid,
     name,
     profileimage,
@@ -16,8 +17,7 @@ export default function UserProfile({
     following,
     id,
     email,
-  },
-}: Props) {
+  } = user;
   return (
     <article className='w-full max-w-2xl'>
       <section className='flex justify-between'>
@@ -32,10 +32,8 @@ export default function UserProfile({
         </div>
         <Avatar image={profileimage} />
       </section>
-      <section className='flex flex-col text-xl mt-3'>
-        <button className='bg-black rounded-lg py-1.5 text-white font-semibold'>
-          팔로우
-        </button>
+      <section className='flex flex-col  mt-3'>
+        <ProfileFollowButton user={user} />
       </section>
     </article>
   );

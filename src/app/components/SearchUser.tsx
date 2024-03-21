@@ -4,11 +4,16 @@ import { FormEvent, useState } from "react";
 import useSWR from "swr";
 import { SearchIcon } from "./ui/icons";
 import UserCard from "./ui/UserCard";
-import { SearchUser } from "../model/user";
+import { AuthUser, SearchUser } from "../model/user";
 import MoonSpinner from "./ui/MoonSpinner";
 import { useDebounce } from "../utils/hooks/useDebounce";
+import SearchFollowButton from "./SearchFollowButton";
 
-export default function SearchUser() {
+type Props = {
+  loginUser: AuthUser | null;
+};
+
+export default function SearchUser({ loginUser }: Props) {
   const [keyword, setKeyword] = useState("");
   const [warning, setWarning] = useState(false);
   const debouncedKeyword = useDebounce(keyword, 800);
@@ -85,9 +90,13 @@ export default function SearchUser() {
                   followers: user.followers,
                 }}
               />
-              <button className='w-[100px] py-1 border border-neutral-300 rounded-lg '>
-                팔로우
-              </button>
+              {loginUser && (
+                <SearchFollowButton
+                  isFollowing={user.isFollowing}
+                  userId={loginUser.id}
+                  searchUserId={user.id}
+                />
+              )}
             </li>
           ))}
       </ul>

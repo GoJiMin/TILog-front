@@ -10,7 +10,8 @@ type Props = {
   text: string;
   onClick: () => void;
 };
-type ColorType = Record<string, string>;
+
+export type ColorType = Record<string, string>;
 type IconType = Record<string, JSX.Element>;
 
 const bgColor: ColorType = {

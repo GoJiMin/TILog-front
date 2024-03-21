@@ -9,6 +9,7 @@ export type AuthUser = {
 export type SearchUser = AuthUser & {
   following: number;
   followers: number;
+  isFollowing: boolean;
 };
 
 export type HomeUser = AuthUser & {
