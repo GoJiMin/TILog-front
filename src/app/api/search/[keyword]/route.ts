@@ -1,7 +1,7 @@
+import { authOptions } from "@/app/lib/auth";
 import { searchUsers } from "@/app/services/user";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
 
 type Context = {
   params: { keyword: string };

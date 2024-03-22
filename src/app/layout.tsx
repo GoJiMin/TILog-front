@@ -11,7 +11,10 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "TILog 오늘의 배움 공유",
+  title: {
+    default: "TILog 오늘의 배움 공유",
+    template: "TILog | %s",
+  },
   description: "Today I Learned! 오늘 배운 지식을 지인과 공유해보세요!",
 };
 

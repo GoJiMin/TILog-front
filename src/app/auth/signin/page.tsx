@@ -1,13 +1,19 @@
 import SignIn from "@/app/components/SignIn";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { getProviders } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+import { authOptions } from "@/app/lib/auth";
 
 type Props = {
   searchParams: {
     callBackUrl: string;
   };
+};
+
+export const metadata: Metadata = {
+  title: "로그인",
+  description: "간편 로그인을 통해 시작해보세요!",
 };
 
 export default async function SignPage({
