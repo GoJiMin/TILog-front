@@ -18,10 +18,18 @@ export default function UserPosts({ user: { id } }: Props) {
   const [query, setQuery] = useState(tabs[0].type);
 
   return (
-    <section>
-      <ul>
+    <section className='mt-[20px] '>
+      <ul className='flex justify-around text-lg text-neutral-500  mb-[10px]'>
         {tabs.map(({ type, text }, index) => (
-          <li key={index} onClick={() => setQuery(type)}>
+          <li
+            className={`w-full text-center p-2 border-b cursor-pointer ${
+              type === query
+                ? "font-semibold text-black border-black"
+                : "border-neutral-300 "
+            }`}
+            key={index}
+            onClick={() => setQuery(type)}
+          >
             <button>{text}</button>
           </li>
         ))}

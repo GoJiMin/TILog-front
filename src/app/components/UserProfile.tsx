@@ -19,7 +19,7 @@ export default function UserProfile({ user }: Props) {
     email,
   } = user;
   return (
-    <article className='w-full max-w-2xl'>
+    <article className='w-full'>
       <section className='flex justify-between'>
         <div>
           <p className='text-3xl font-semibold'>{name}</p>

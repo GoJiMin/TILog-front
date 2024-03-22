@@ -14,7 +14,7 @@ export default async function Page({ params }: Props) {
     notFound();
   }
   return (
-    <section className='flex justify-center mt-10'>
+    <section className='w-full mx-auto max-w-2xl mt-10'>
       <UserProfile user={user} />
       <UserPosts user={user} />
     </section>
