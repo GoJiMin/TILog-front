@@ -9,6 +9,7 @@ import PostDetail from "../PostDetail";
 import ActionBar from "../ActionBar";
 import PostUserData from "../PostUserData";
 import PostModal from "./PostModal";
+import { useModal } from "@/app/utils/hooks/useModal";
 
 type Props = {
   post: SimplePost;
@@ -26,15 +27,7 @@ export default function PostCard({ post, priority = false }: Props) {
     createdAt,
   } = post;
 
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleOpen = () => {
-    setOpenModal(true);
-  };
-
-  const handleClose = () => {
-    setOpenModal(false);
-  };
+  const { openModal, handleModalOpen, handleModalClose } = useModal();
 
   return (
     <article className='flex border-b border-neutral-300 pb-4'>
@@ -52,11 +45,11 @@ export default function PostCard({ post, priority = false }: Props) {
           width={600}
           height={500}
           priority={priority}
-          onClick={handleOpen}
+          onClick={handleModalOpen}
         />
         <ActionBar likes={likes} comments={comments} />
         {openModal && (
-          <Modal onClose={handleClose}>
+          <Modal onClose={handleModalClose}>
             <PostModal>
               <PostDetail post={post} />
             </PostModal>
