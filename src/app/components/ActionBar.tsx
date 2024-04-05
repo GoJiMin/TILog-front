@@ -8,17 +8,16 @@ import {
 } from "./ui/icons";
 import ToggleButton from "./ui/ToggleButton";
 import { useSession } from "next-auth/react";
-import { useSWRConfig } from "swr";
 import { usePosts } from "../utils/hooks/posts";
+import { SimplePost } from "../model/post";
 
 type Props = {
-  postId: string;
-  likes: string[];
-  comments: number;
+  post: SimplePost;
 };
 
-export default function ActionBar({ postId, likes, comments }: Props) {
+export default function ActionBar({ post }: Props) {
   const [bookmarked, setBookmarked] = useState(false);
+  const { likes, comments } = post;
   const { setLike } = usePosts();
   const { data: session } = useSession();
   const user = session?.user;
@@ -26,7 +25,7 @@ export default function ActionBar({ postId, likes, comments }: Props) {
 
   const handleLike = (like: boolean) => {
     if (user) {
-      setLike(postId, like);
+      setLike(post, user.id, like);
     }
   };
 

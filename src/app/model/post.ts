@@ -12,7 +12,7 @@ export type Post = {
   profileimage: string;
   image: string;
   description: string;
-  likes: AuthUser[];
+  likes: string[];
   comments: Comments[];
   createdAt: string;
 };

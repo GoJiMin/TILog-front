@@ -17,16 +17,7 @@ type Props = {
 };
 
 export default function PostCard({ post, priority = false }: Props) {
-  const {
-    id,
-    userid,
-    profileimage,
-    image,
-    description,
-    likes,
-    comments,
-    createdAt,
-  } = post;
+  const { userid, profileimage, image, description, createdAt } = post;
 
   const { openModal, handleModalOpen, handleModalClose } = useModal();
 
@@ -48,7 +39,7 @@ export default function PostCard({ post, priority = false }: Props) {
           priority={priority}
           onClick={handleModalOpen}
         />
-        <ActionBar likes={likes} comments={comments} postId={id} />
+        <ActionBar post={post} />
         {openModal && (
           <Modal onClose={handleModalClose}>
             <PostModal>

@@ -13,17 +13,8 @@ type Props = {
 };
 
 export default function PostDetail({ post }: Props) {
-  const {
-    id,
-    userid,
-    profileimage,
-    image,
-    description,
-    createdAt,
-    name,
-    likes: postLikes,
-    comments: postComments,
-  } = post;
+  const { id, userid, profileimage, image, description, createdAt, name } =
+    post;
   const { data } = useSWR<Post>(`/api/posts/${id}`);
   const comments = data?.comments;
 
@@ -47,7 +38,7 @@ export default function PostDetail({ post }: Props) {
         </section>
         <section className='border-b border-neutral-300 pb-2 mb-2'>
           <p>{description}</p>
-          <ActionBar likes={postLikes} comments={postComments} postId={id} />
+          <ActionBar post={post} />
         </section>
         <ul className='h-full overflow-y-auto'>
           {comments &&
