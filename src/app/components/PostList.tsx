@@ -4,13 +4,10 @@ import useSWR from "swr";
 import { SimplePost } from "../model/post";
 import PostCard from "./ui/PostCard";
 import MoonSpinner from "./ui/MoonSpinner";
+import { usePosts } from "../utils/hooks/posts";
 
 export default function PostList() {
-  const {
-    data: posts,
-    isLoading: loading,
-    error,
-  } = useSWR<SimplePost[]>("/api/posts");
+  const { posts, loading, error } = usePosts();
 
   return (
     <section className='flex justify-center'>
