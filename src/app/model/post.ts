@@ -18,6 +18,6 @@ export type Post = {
 };
 
 export type SimplePost = Omit<Post, "comments"> & {
-  likes: number;
+  likes: string[];
   comments: number;
 };

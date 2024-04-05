@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function HeartFillIcon({ size = "normal" }: Props) {
-  return <AiFillHeart className={size === "small" ? "w-7 h-7" : "w-9 h-9"} />;
+  return <AiFillHeart className={size === "small" ? "w-7 h-7" : "w-8 h-8"} />;
 }

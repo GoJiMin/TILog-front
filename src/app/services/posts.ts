@@ -8,7 +8,7 @@ const simpleProjection = `
     "profileimage": author->profileimage,
     "image": photo,
     "description": description,
-    "likes": count(likes),
+    "likes": likes[]->_id,
     "comments": count(comments),
     "createdAt": _createdAt,
 `;
@@ -79,4 +79,24 @@ export async function getSavedPostsOf(id: string) {
 
 function ImageUrlBuilder(posts: SimplePost[]) {
   return posts.map((post) => ({ ...post, image: urlFor(post.image) }));
+}
+
+export async function likePost(postId: string, userId: string) {
+  return client
+    .patch(postId)
+    .setIfMissing({ likes: [] })
+    .append("likes", [
+      {
+        _ref: userId,
+        _type: "reference",
+      },
+    ])
+    .commit({ autoGenerateArrayKeys: true });
+}
+
+export async function disLikePost(postId: string, userId: string) {
+  return client
+    .patch(postId)
+    .unset([`likes[_ref=="${userId}"]`])
+    .commit();
 }
