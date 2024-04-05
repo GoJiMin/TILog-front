@@ -1,14 +1,12 @@
 "use client";
 
-import useSWR from "swr";
-import { HomeUser } from "../model/user";
-import { ScaleLoader } from "react-spinners";
-import Link from "next/link";
+import useProfile from "../utils/hooks/profile";
 import UserCard from "./ui/UserCard";
+import { ScaleLoader } from "react-spinners";
 
 export default function FollowingList() {
-  const { data, isLoading: loading, error } = useSWR<HomeUser>("/api/profile");
-  const users = data?.following?.slice(0, 5) || [];
+  const { user, loading, error } = useProfile();
+  const users = user?.following?.slice(0, 5) || [];
 
   return (
     <section className='mt-6 shadow-lg p-3 rounded-lg'>
