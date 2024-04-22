@@ -63,7 +63,7 @@ export default function PostDetail({ post }: Props) {
               )
             )}
         </ul>
-        <CommentForm />
+        <CommentForm id={id} />
       </article>
     </section>
   );

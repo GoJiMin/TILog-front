@@ -8,6 +8,13 @@ async function updateLike(postId: string, like: boolean) {
   }).then((res) => res.json());
 }
 
+async function updateComment(id: string, text: string) {
+  fetch("/api/comment", {
+    method: "POST",
+    body: JSON.stringify({ id, comment: text }),
+  });
+}
+
 export function usePosts() {
   const {
     data: posts,
