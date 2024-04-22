@@ -15,6 +15,7 @@ export default function CommentForm({ onSubmitComment }: Props) {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmitComment(comment);
+    setComment("");
   };
 
   return (

@@ -7,7 +7,8 @@ import Avatar from "./ui/Avatar";
 import ActionBar from "./ActionBar";
 import CommentForm from "./CommentForm";
 import PostUserData from "./PostUserData";
-import { usePosts } from "../utils/hooks/posts";
+import useDetailPost from "../utils/hooks/post";
+import useProfile from "../utils/hooks/profile";
 
 type Props = {
   post: SimplePost;
@@ -16,12 +17,18 @@ type Props = {
 export default function PostDetail({ post }: Props) {
   const { id, userid, profileimage, image, description, createdAt, name } =
     post;
-  const { data } = useSWR<Post>(`/api/posts/${id}`);
+  const { user } = useProfile();
+  const { post: data, submitComment } = useDetailPost(id);
   const comments = data?.comments;
-  const { submitComment } = usePosts();
 
   const handleSubmitComment = (comment: string) => {
-    submitComment(post, comment);
+    user &&
+      submitComment({
+        userid: user.userid,
+        profileimage: user.profileimage,
+        comment,
+        createdAt: new Date().toISOString(),
+      });
   };
 
   return (
