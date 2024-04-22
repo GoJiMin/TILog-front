@@ -21,13 +21,13 @@ export default function PostDetail({ post }: Props) {
   const { post: data, submitComment } = useDetailPost(id);
   const comments = data?.comments;
 
-  const handleSubmitComment = (comment: string) => {
+  const handleSubmitComment = (comment: string, createdAt: string) => {
     user &&
       submitComment({
         userid: user.userid,
         profileimage: user.profileimage,
         comment,
-        createdAt: new Date().toISOString(),
+        createdAt,
       });
   };
 

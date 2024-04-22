@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 
 type Props = {
-  onSubmitComment: (text: string) => void;
+  onSubmitComment: (comment: string, createdAt: string) => void;
 };
 
 export default function CommentForm({ onSubmitComment }: Props) {
@@ -14,7 +14,8 @@ export default function CommentForm({ onSubmitComment }: Props) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmitComment(comment);
+    const timeStamp = new Date().toISOString();
+    onSubmitComment(comment, timeStamp);
     setComment("");
   };
 

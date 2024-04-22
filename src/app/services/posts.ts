@@ -31,7 +31,7 @@ const projection = `
       "userid": author->userid,
       "name": author->name,
       "profileimage": author->profileimage,
-      "createdAt": _createdAt,
+      createdAt,
     },
    "createdAt": _createdAt,
 `;
@@ -108,6 +108,7 @@ export async function disLikePost(postId: string, userId: string) {
 export async function addComment(
   postId: string,
   comment: string,
+  createdAt: string,
   userId: string
 ) {
   return client
@@ -117,6 +118,7 @@ export async function addComment(
       {
         _type: "comment",
         comment,
+        createdAt,
         author: {
           _ref: userId,
           _type: "reference",

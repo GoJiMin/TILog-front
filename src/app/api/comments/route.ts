@@ -11,13 +11,13 @@ export async function POST(req: NextRequest) {
     return new Response("Authentication Error!", { status: 401 });
   }
 
-  const { id, comment } = await req.json();
+  const { id, comment, createdAt } = await req.json();
 
   if (!id || comment === undefined) {
     return new Response("Bad Request!", { status: 400 });
   }
 
-  return addComment(id, comment, user.id)
+  return addComment(id, comment, createdAt, user.id)
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }
