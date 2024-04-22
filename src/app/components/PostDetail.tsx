@@ -7,6 +7,7 @@ import Avatar from "./ui/Avatar";
 import ActionBar from "./ActionBar";
 import CommentForm from "./CommentForm";
 import PostUserData from "./PostUserData";
+import { usePosts } from "../utils/hooks/posts";
 
 type Props = {
   post: SimplePost;
@@ -17,6 +18,11 @@ export default function PostDetail({ post }: Props) {
     post;
   const { data } = useSWR<Post>(`/api/posts/${id}`);
   const comments = data?.comments;
+  const { submitComment } = usePosts();
+
+  const handleSubmitComment = (comment: string) => {
+    submitComment(post, comment);
+  };
 
   return (
     <section className='flex w-full h-full'>
@@ -63,7 +69,7 @@ export default function PostDetail({ post }: Props) {
               )
             )}
         </ul>
-        <CommentForm id={id} />
+        <CommentForm onSubmitComment={handleSubmitComment} />
       </article>
     </section>
   );

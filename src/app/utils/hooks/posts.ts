@@ -8,11 +8,11 @@ async function updateLike(postId: string, like: boolean) {
   }).then((res) => res.json());
 }
 
-async function updateComment(id: string, text: string) {
-  fetch("/api/comment", {
+async function addComment(id: string, text: string) {
+  return fetch("/api/comments", {
     method: "POST",
     body: JSON.stringify({ id, comment: text }),
-  });
+  }).then((res) => res.json());
 }
 
 export function usePosts() {
@@ -41,5 +41,21 @@ export function usePosts() {
     });
   };
 
-  return { posts, loading, error, setLike };
+  const submitComment = (post: SimplePost, comment: string) => {
+    const newPost = {
+      ...post,
+      comments: post.comments + 1,
+    };
+
+    const newPosts = posts?.map((p) => (p.id === post.id ? newPost : p));
+
+    return mutate(addComment(post.id, comment), {
+      optimisticData: newPosts,
+      populateCache: false,
+      revalidate: false,
+      rollbackOnError: true,
+    });
+  };
+
+  return { posts, loading, error, setLike, submitComment };
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   BookMarkFillIcon,
   BookMarkIcon,
@@ -7,7 +6,6 @@ import {
   HeartIcon,
 } from "./ui/icons";
 import ToggleButton from "./ui/ToggleButton";
-import { useSession } from "next-auth/react";
 import { usePosts } from "../utils/hooks/posts";
 import { SimplePost } from "../model/post";
 import useProfile from "../utils/hooks/profile";
