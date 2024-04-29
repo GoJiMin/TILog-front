@@ -27,7 +27,7 @@ export default function Button({
   return (
     <button
       className={`${buttonColor[type]} ${buttonSize[size]} min-w-[90px] rounded-md font-semibold`}
-      onClick={onClick}
+      onClick={() => onClick()}
     >
       {text}
     </button>

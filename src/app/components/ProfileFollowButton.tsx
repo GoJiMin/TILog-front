@@ -10,7 +10,7 @@ type Props = {
 
 export default function ProfileFollowButton({ user }: Props) {
   const { userid, id } = user;
-  const { user: loggedInUser } = useProfile();
+  const { user: loggedInUser, toggleFollow } = useProfile();
   const showButton = loggedInUser && loggedInUser.id !== id;
   const isFollowing =
     loggedInUser &&
@@ -20,12 +20,16 @@ export default function ProfileFollowButton({ user }: Props) {
 
   const text = isFollowing ? "팔로잉" : "팔로우";
 
+  const handleFollow = () => {
+    toggleFollow(id, !isFollowing);
+  };
+
   return (
     <>
       {showButton && (
         <Button
           text={text}
-          onClick={() => {}}
+          onClick={handleFollow}
           type={isFollowing ? "following" : "follow"}
         />
       )}
