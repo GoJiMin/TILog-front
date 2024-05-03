@@ -45,7 +45,11 @@ export async function getUserForProfile(userid: string) {
       "followers": count(followers),
       "posts": count(*[_type == "post" && author._ref == ^._id]),
       "bookmarks": bookmarks[]->_id,
-    }`
+    }`,
+    undefined,
+    {
+      next: { tags: [`/user/${userid}`] },
+    }
   );
 }
 

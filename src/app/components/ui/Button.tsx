@@ -6,6 +6,7 @@ type Props = {
   onClick: () => void;
   type: string;
   size?: string;
+  disabled?: boolean;
 };
 
 const buttonColor: ColorType = {
@@ -15,7 +16,7 @@ const buttonColor: ColorType = {
 
 const buttonSize: SizeType = {
   small: "text-base py-1",
-  normal: "text-xl py-1.5",
+  normal: "text-xl py-1.5 w-full",
 };
 
 export default function Button({
@@ -23,10 +24,14 @@ export default function Button({
   onClick,
   type,
   size = "normal",
+  disabled = false,
 }: Props) {
   return (
     <button
-      className={`${buttonColor[type]} ${buttonSize[size]} min-w-[90px] rounded-md font-semibold`}
+      disabled={disabled}
+      className={`${buttonColor[type]} ${buttonSize[size]} ${
+        disabled && "opacity-70"
+      } min-w-[90px] min-h-[45px] rounded-md font-semibold`}
       onClick={() => onClick()}
     >
       {text}
