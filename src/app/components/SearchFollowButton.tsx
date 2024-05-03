@@ -1,4 +1,8 @@
+import { useState } from "react";
 import Button from "./ui/Button";
+import { revalidateSearch } from "../utils/actions/search";
+import useSearch from "../utils/hooks/search";
+import PulseSpinner from "./ui/PulseSpinner";
 
 type Props = {
   userId: string;
@@ -11,13 +15,32 @@ export default function SearchFollowButton({
   searchUserId,
   isFollowing,
 }: Props) {
+  const [isFetching, setIsFetching] = useState(false);
   const showButton = userId && userId !== searchUserId;
   const text = isFollowing ? "팔로잉" : "팔로우";
   const type = isFollowing ? "following" : "follow";
+
+  const { toggleFollow } = useSearch();
+
+  const handleFollow = async () => {
+    setIsFetching(true);
+    await toggleFollow(searchUserId, !isFollowing);
+    setIsFetching(false);
+    revalidateSearch(searchUserId);
+  };
   return (
     <>
       {showButton && (
-        <Button text={text} type={type} onClick={() => {}} size={"small"} />
+        <div className="relative">
+          {isFetching && <PulseSpinner size="small" />}
+          <Button
+            disabled={isFetching}
+            text={text}
+            onClick={handleFollow}
+            size={"small"}
+            type={type}
+          />
+        </div>
       )}
     </>
   );

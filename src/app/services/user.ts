@@ -87,7 +87,11 @@ export async function searchUsers(keyword?: string, loggedInUserId?: string) {
       "followers": count(followers),
       ${projection}
    }
-    `
+    `,
+    undefined,
+    {
+      next: { tags: ["search"] },
+    }
   );
 }
 
