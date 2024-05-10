@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ProfileUser } from "../model/user";
 import PostsGrid from "./PostsGrid";
+import { CacheKeysContext } from "../context/CacheKeysContext";
 
 type Props = {
   user: ProfileUser;
@@ -18,8 +19,8 @@ export default function UserPosts({ user: { id } }: Props) {
   const [query, setQuery] = useState(tabs[0].type);
 
   return (
-    <section className='mt-[20px] '>
-      <ul className='flex justify-around text-lg text-neutral-500  mb-[10px]'>
+    <section className="mt-[20px] ">
+      <ul className="flex justify-around text-lg text-neutral-500  mb-[10px]">
         {tabs.map(({ type, text }, index) => (
           <li
             className={`w-full text-center p-2 border-b cursor-pointer ${
@@ -34,7 +35,11 @@ export default function UserPosts({ user: { id } }: Props) {
           </li>
         ))}
       </ul>
-      <PostsGrid id={id} query={query} />
+      <CacheKeysContext.Provider
+        value={{ postsKey: `/api/users/${id}/${query}` }}
+      >
+        <PostsGrid query={query} />
+      </CacheKeysContext.Provider>
     </section>
   );
 }
