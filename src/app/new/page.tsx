@@ -12,7 +12,7 @@ export default async function NewPage() {
   }
 
   return (
-    <section className="flex justify-center items-center h-full">
+    <section>
       <NewPost user={user} />
     </section>
   );
