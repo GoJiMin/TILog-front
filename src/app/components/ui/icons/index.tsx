@@ -12,3 +12,4 @@ export { default as BookMarkFillIcon } from "./BookMarkFillIcon";
 export { default as SignInIcon } from "./SignInIcon";
 export { default as SignOutIcon } from "./SignOutIcon";
 export { default as CloseIcon } from "./CloseIcon";
+export { default as FilesIcon } from "./FilesIcon";

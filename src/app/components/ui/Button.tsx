@@ -4,7 +4,7 @@ import { ColorType } from "./SignInButton";
 type Props = {
   text: string;
   onClick: () => void;
-  type: string;
+  type?: string;
   size?: string;
   disabled?: boolean;
 };
@@ -12,6 +12,7 @@ type Props = {
 const buttonColor: ColorType = {
   follow: "border border-black",
   following: "bg-black text-white",
+  default: "bg-black text-white",
 };
 
 const buttonSize: SizeType = {
@@ -22,7 +23,7 @@ const buttonSize: SizeType = {
 export default function Button({
   text,
   onClick,
-  type,
+  type = "default",
   size = "normal",
   disabled = false,
 }: Props) {
