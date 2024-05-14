@@ -75,13 +75,11 @@ export default function NewPost({ user: { profileimage, userid } }: Props) {
           return;
         }
 
-        // router.push("/");
+        router.push("/");
       })
       .catch((err) => setError(err.toString()))
       .finally(() => setLoading(false));
   };
-
-  console.log(error);
 
   return (
     <section className="relative w-full max-w-xl mx-auto mt-[40px] flex flex-col">

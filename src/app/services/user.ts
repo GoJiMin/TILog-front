@@ -49,6 +49,7 @@ export async function getUserForProfile(userid: string) {
     undefined,
     {
       next: { tags: [`/user/${userid}`] },
+      cache: "no-store",
     }
   );
 }

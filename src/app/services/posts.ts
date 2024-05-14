@@ -127,3 +127,21 @@ export async function addComment(
     ])
     .commit({ autoGenerateArrayKeys: true });
 }
+
+export async function createPost(userId: string, text: string, file: Blob) {
+  return client.assets
+    .upload("image", file, { contentType: file.type }) //
+    .then((result) => {
+      return client.create(
+        {
+          _type: "post",
+          author: { _ref: userId },
+          photo: { asset: { _ref: result._id } },
+          description: text,
+          likes: [],
+          comments: [],
+        },
+        { autoGenerateArrayKeys: true }
+      );
+    });
+}

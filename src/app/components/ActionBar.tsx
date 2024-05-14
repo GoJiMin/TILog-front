@@ -32,13 +32,13 @@ export default function ActionBar({ post }: Props) {
 
   return (
     <section>
-      <article className='flex justify-between items-center mt-3'>
-        <section className='flex gap-[10px] items-center'>
+      <article className="flex justify-between items-center mt-3">
+        <section className="flex gap-[10px] items-center">
           <ToggleButton
             toggled={liked}
             onToggle={handleLike}
-            onIcon={<HeartFillIcon size='small' />}
-            offIcon={<HeartIcon size='small' />}
+            onIcon={<HeartFillIcon size="small" />}
+            offIcon={<HeartIcon size="small" />}
           />
           <CommentIcon />
         </section>
@@ -49,13 +49,11 @@ export default function ActionBar({ post }: Props) {
           offIcon={<BookMarkIcon />}
         />
       </article>
-      <article className='mt-2 flex gap-[15px]'>
+      <article className="mt-2 flex gap-[15px]">
         {likes && likes.length > 0 && (
-          <p className='text-neutral-500'>좋아요 {likes.length}개</p>
+          <p className="text-neutral-500">좋아요 {likes.length}개</p>
         )}
-        {comments && comments > 0 && (
-          <p className='text-neutral-500'>답글 {comments}개</p>
-        )}
+        {comments > 0 && <p className="text-neutral-500">답글 {comments}개</p>}
       </article>
     </section>
   );
