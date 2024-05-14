@@ -1,4 +1,5 @@
 import { AuthUser } from "../model/user";
+import useProfile from "../utils/hooks/profile";
 import Icon from "./ui/Icon";
 import {
   HomeIcon,
@@ -29,39 +30,37 @@ const MENU_LIST = [
     selectedIcon: <NewPostIcon />,
   },
   {
-    href: "likes",
-    icon: <HeartIcon />,
-    selectedIcon: <HeartFillIcon />,
-  },
-  {
-    href: "/mypage",
+    getHref: (userId: string) => `/user/${userId}`,
     icon: <UserIcon />,
     selectedIcon: <UserFillIcon />,
   },
 ];
 
 type Props = {
-  user: AuthUser;
   pathName: string;
 };
 
-export default function NavList({ user, pathName }: Props) {
-  if (user)
-    return (
-      <ul className='grid grid-cols-5 w-screen max-w-[620px] justify-items-center'>
-        {MENU_LIST.map(({ href, icon, selectedIcon }) => (
-          <li className='flex items-center relative' key={href}>
-            <Link href={href}>
+export default function NavList({ pathName }: Props) {
+  const { user } = useProfile();
+  const userId = user && user.userid;
+
+  return (
+    <ul className="grid grid-cols-4 w-screen max-w-[450px] justify-items-center">
+      {MENU_LIST.map(({ href, getHref, icon, selectedIcon }) => {
+        const linkHref = getHref ? getHref(userId as string) : href;
+
+        return (
+          <li className="flex items-center relative" key={linkHref}>
+            <Link href={linkHref}>
               <Icon
-                icon={pathName === href ? selectedIcon : icon}
-                isSelected={pathName === href}
+                icon={pathName === linkHref ? selectedIcon : icon}
+                isSelected={pathName === linkHref}
                 type={"header"}
               />
             </Link>
           </li>
-        ))}
-      </ul>
-    );
-
-  return <section></section>;
+        );
+      })}
+    </ul>
+  );
 }
