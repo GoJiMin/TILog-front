@@ -5,11 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest) {
   const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response("Authentication Error", { status: 401 });
-  }
+  const user = session!.user;
 
   const { id, like } = await req.json();
 

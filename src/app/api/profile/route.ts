@@ -5,11 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return Response.json({ message: "Authentication Error" }, { status: 401 });
-  }
+  const user = session!.user;
 
   return getUserById(user.id).then((data) => NextResponse.json(data));
 }

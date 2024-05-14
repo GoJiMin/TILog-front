@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function SearchPage() {
   const session = await getServerSession(authOptions);
-  const user = session?.user || null;
+  const user = session!.user;
 
   return <SearchUser loginUser={user} />;
 }
